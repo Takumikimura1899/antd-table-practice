@@ -6,16 +6,19 @@ import TableContent from './Table';
 
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
+import GetPhoto from './GetPhoto';
+import GetFoodPhoto from './GetFoodPhoto';
+import GetAnimalPhoto from './GetFoodPhoto copy';
 
 const { Content } = Layout;
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const showModal = () => {
+  const showModal = (): void => {
     setModalOpen(true);
   };
-  const closeModal = () => {
+  const closeModal = (): void => {
     setModalOpen(false);
   };
 
@@ -28,7 +31,6 @@ function App() {
           <Layout style={{ textAlign: 'center' }}>
             <Content>
               <h1>Hello React Router</h1>
-              <TableContent showModal={showModal} />
               <Switch>
                 <Route exact path='/'>
                   <Home />
@@ -43,6 +45,7 @@ function App() {
                   <NotFound />
                 </Route>
               </Switch>
+              <TableContent showModal={showModal} />
             </Content>
           </Layout>
         </Router>
@@ -56,6 +59,7 @@ const Home = () => {
     <>
       <hr />
       <h2>Home</h2>
+      <GetPhoto />
     </>
   );
 };
@@ -64,15 +68,18 @@ const About = () => {
     <>
       <hr />
       <h2>About</h2>
+      <GetFoodPhoto />
     </>
   );
 };
+
 const Contact = ({ showModal }: any) => {
   return (
     <>
       <hr />
       <h2>Contact</h2>
-      <button onClick={showModal}>ページネーション確認画面</button>
+      <GetAnimalPhoto />
+      <button onClick={showModal}>ページネーション確認用モーダルを開く</button>
     </>
   );
 };
@@ -87,7 +94,7 @@ const PaginationCheck = ({ closeModal }: any) => {
   return (
     <>
       <h1>ページネーションの画面遷移を確認しましょう</h1>
-      <button onClick={closeModal}>更新</button>
+      <button onClick={closeModal}>モーダルを閉じる</button>
     </>
   );
 };
